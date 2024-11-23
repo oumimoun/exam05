@@ -12,6 +12,7 @@ public:
     BrickWall& operator=(const BrickWall& other);
     ~BrickWall();
 
+    ATarget* clone() const;
 };
 
 

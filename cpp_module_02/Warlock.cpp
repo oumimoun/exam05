@@ -2,19 +2,12 @@
 
 Warlock::Warlock() : name(""), title("")
 {
-    for (int i = 0; i < 4; i++)
-    {
-        _templates[i] = NULL;
-    }
+
 }
 
 Warlock::Warlock(std::string name, std::string title) : name(name), title(title)
 {
     std::cout << name << ": This looks like another boring day." << std::endl;
-    for (int i = 0; i < 4; i++)
-    {
-        _templates[i] = NULL;
-    }
 }
 
 Warlock::~Warlock()
@@ -33,15 +26,6 @@ Warlock &Warlock::operator=(const Warlock &other)
     {
         name = other.name;
         title = other.title;
-        for (int i = 0; i < 4; i++)
-        {
-            // delete
-            if (other._templates[i])
-            {
-                _templates[i] = other._templates[i];
-            }
-            _templates[i] = NULL;
-        }
     }
     return *this;
 }
@@ -70,39 +54,16 @@ void Warlock::learnSpell(ASpell *aspell)
 {
     if (!aspell)
         return;
-    for (int i = 0; i < 4; i++)
-    {
-        if (_templates[i] == NULL)
-        {
-            _templates[i] = aspell;
-            return;
-        }
-    }
+    _SpellBook.learnSpell(aspell);
 }
 
 void Warlock::forgetSpell(std::string spellName)
 {
-    for (int i = 0; i < 4; i++)
-    {
-        if (_templates[i]->getName() == spellName && _templates[i] != NULL)
-        {
-            _templates[i] = NULL;
-            return;
-        }
-    }
+    _SpellBook.forgetSpell(spellName);
 }
 
 void Warlock::launchSpell(std::string spellName, ATarget &target)
 {
-    for (int i = 0; i < 4; i++)
-    {
-        if (_templates[i])
-        {
-            if (_templates[i]->getName() == spellName)
-            {
-                _templates[i]->launch(target);
-                return;
-            }
-        }
-    }
+    if (_SpellBook.createSpell(spellName))
+        _SpellBook.createSpell(spellName)->launch(target);
 }

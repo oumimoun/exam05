@@ -3,11 +3,12 @@
 
 #include <iostream>
 #include "ASpell.hpp"
+#include "SpellBook.hpp"
 
 class Warlock
 {
 private:
-    ASpell* _templates[4];
+    SpellBook _SpellBook;
     std::string name;
     std::string title;
     Warlock();

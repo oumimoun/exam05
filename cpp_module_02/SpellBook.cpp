@@ -43,14 +43,19 @@ void SpellBook::forgetSpell(std::string const &spelName)
         if (_book[i]->getName() == spelName)
         {
             _book[i] = NULL;
+            return;
         }
-        
     }
-    
-
 }
 
 ASpell* SpellBook::createSpell(std::string const &spellName)
 {
-
+    for (int i = 0; i < 4; i++)
+    {
+        if (_book[i]->getName() == spellName)
+        {
+            return _book[i];
+        }
+    }
+    return NULL;
 }

@@ -19,3 +19,7 @@ BrickWall& BrickWall::operator=(const BrickWall& other)
 
 BrickWall::~BrickWall() {}
 
+ATarget* BrickWall::clone() const
+{
+	return (new BrickWall());
+}
