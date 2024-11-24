@@ -27,6 +27,5 @@ int main()
 
   richard.introduce();
   richard.launchSpell("Polymorph", *wall);
-  printf("allo\n");
   richard.launchSpell("Fireball", *wall);
 }

@@ -2,11 +2,12 @@
 #define SPELLBOOK_HPP
 
 #include "ASpell.hpp"
+#include <map>
 
 class SpellBook
 {
 private:
-    ASpell* _book[4];
+    std::map<std::string , ASpell*> _book;
     SpellBook(const SpellBook& other);
     SpellBook& operator=(const SpellBook& other);
 

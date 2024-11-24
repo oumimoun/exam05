@@ -13,10 +13,7 @@ TargetGenerator& TargetGenerator::operator=(const TargetGenerator& other)
 {
     if (this != &other)
     {
-        for (int i = 0; i < 4; i++)
-        {
-            this->target[i] = other.target[i];
-        }
+        _target = other._target;
     }
     return *this;
 }
@@ -24,37 +21,25 @@ TargetGenerator& TargetGenerator::operator=(const TargetGenerator& other)
 
 void TargetGenerator::learnTargetType(ATarget* target)
 {
-    for (int i = 0; i < 4; i++)
+    if (target)
     {
-        if (this->target[i] == NULL)
-        {
-            this->target[i] = target;
-            return;
-        }
+        _target[target->getType()] = target;
     }
 }
 
 
 void TargetGenerator::forgetTargetType(std::string const &targetType)
 {
-    for (int i = 0; i < 4; i++)
-    {
-        if (target[i]->getType() == targetType)
-        {
-            target[i] = NULL;
-            return;
-        }
-    }
+    if (_target.find(targetType) != _target.end())
+        _target.erase(_target.find(targetType));
 }
 
 
 ATarget* TargetGenerator::createTarget(std::string const &targetType)
 {
-    ATarget* tmp = NULL;
-    for (int i = 0; i < 4; i++)
-    {
-        tmp = target[i]; // ghy tankhwer
-    }
-    return tmp;
+    ATarget* temp = NULL;
+    if (_target.find(targetType) != _target.end())
+        temp = _target[targetType];
+    return temp;
 }
 

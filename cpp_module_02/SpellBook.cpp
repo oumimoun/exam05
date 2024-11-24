@@ -2,10 +2,6 @@
 
 SpellBook::SpellBook()
 {
-    for (int i = 0; i < 4; i++)
-    {
-        _book[i] = NULL;
-    }
 }
 
 SpellBook::~SpellBook() {}
@@ -19,53 +15,31 @@ SpellBook &SpellBook::operator=(const SpellBook &other)
 {
     if (this != &other)
     {
-        for (int i = 0; i < 4; i++)
-        {
-            _book[i] = other._book[i];
-        }
+        _book = other._book;
     }
     return *this;
 }
 
 void SpellBook::learnSpell(ASpell *spell)
 {
-    if (!spell)
-        return;
-    for (int i = 0; i < 4; i++)
+    if (spell)
     {
-        if (_book[i] == NULL)
-        {
-            _book[i] = spell;
-            return;
-        }
+        _book[spell->getName()] = spell;
     }
+    
 }
 
-void SpellBook::forgetSpell(std::string const &spelName)
+void SpellBook::forgetSpell(std::string const &spellName)
 {
-    for (int i = 0; i < 4; i++)
-    {
-        if (_book[i]->getName() == spelName)
-        {
-            _book[i] = NULL;
-            return;
-        }
-    }
+    if (_book.find(spellName) != _book.end())
+        _book.erase(_book.find(spellName));
 }
 
 ASpell* SpellBook::createSpell(std::string const &spellName)
 {
-    for (int i = 0; i < 4; i++)
-    {
-        if (_book[i] != NULL)
-        {
-            if (_book[i]->getName() == spellName)
-            {
-                printf("Found spell: %s\n", _book[i]->getName().c_str());
-                return _book[i];
-            }
-        }
-    }
-    return NULL;
+    ASpell* temp = NULL;
+    if (_book.find(spellName) != _book.end())
+        temp = _book[spellName];
+    return temp;
 }
 
