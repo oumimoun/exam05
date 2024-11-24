@@ -1,11 +1,7 @@
 #include "Dummy.hpp"
 
 Dummy::Dummy() : ATarget("Target Practice Dummy")
-{
-
-}
-
-
+{}
 
 Dummy::Dummy(const Dummy& other) : ATarget("Target Practice Dummy")
 {

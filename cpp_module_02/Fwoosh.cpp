@@ -24,7 +24,7 @@ Fwoosh& Fwoosh::operator=(const Fwoosh& other)
     return *this;
 }
 
-Fwoosh* Fwoosh::clone() const
+ASpell* Fwoosh::clone() const //ta hna
 {
     return new Fwoosh(*this);
 }

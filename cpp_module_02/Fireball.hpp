@@ -12,7 +12,7 @@ public:
     Fireball& operator=(const Fireball& other);
     ~Fireball();
 
-    Fireball* clone() const ;
+    ASpell* clone() const ; //hna
 
 };
 

@@ -1,15 +1,21 @@
 #include "SpellBook.hpp"
 
-SpellBook::SpellBook() {}
+SpellBook::SpellBook()
+{
+    for (int i = 0; i < 4; i++)
+    {
+        _book[i] = NULL;
+    }
+}
 
 SpellBook::~SpellBook() {}
 
-SpellBook::SpellBook(const SpellBook& other) 
+SpellBook::SpellBook(const SpellBook &other)
 {
     *this = other;
 }
 
-SpellBook& SpellBook::operator=(const SpellBook& other)
+SpellBook &SpellBook::operator=(const SpellBook &other)
 {
     if (this != &other)
     {
@@ -17,12 +23,11 @@ SpellBook& SpellBook::operator=(const SpellBook& other)
         {
             _book[i] = other._book[i];
         }
-        
     }
     return *this;
 }
 
-void SpellBook::learnSpell(ASpell* spell)
+void SpellBook::learnSpell(ASpell *spell)
 {
     if (!spell)
         return;
@@ -52,10 +57,15 @@ ASpell* SpellBook::createSpell(std::string const &spellName)
 {
     for (int i = 0; i < 4; i++)
     {
-        if (_book[i]->getName() == spellName)
+        if (_book[i] != NULL)
         {
-            return _book[i];
+            if (_book[i]->getName() == spellName)
+            {
+                printf("Found spell: %s\n", _book[i]->getName().c_str());
+                return _book[i];
+            }
         }
     }
     return NULL;
 }
+

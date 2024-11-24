@@ -18,7 +18,7 @@ Polymorph& Polymorph::operator=(const Polymorph& other)
     return *this;
 }
 
-Polymorph* Polymorph::clone() const
+ASpell* Polymorph::clone() const //ta hna
 {
     return new Polymorph();
 }

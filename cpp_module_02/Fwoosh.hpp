@@ -13,7 +13,7 @@ public:
     Fwoosh & operator=(const Fwoosh& other);
     ~Fwoosh();
 
-    Fwoosh* clone() const;
+    ASpell* clone() const;
 
 };
 

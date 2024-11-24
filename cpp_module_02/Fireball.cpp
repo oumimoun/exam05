@@ -20,7 +20,7 @@ Fireball& Fireball::operator=(const Fireball& other)
 
 Fireball::~Fireball() {}
 
-Fireball* Fireball::clone() const 
+ASpell* Fireball::clone() const // hna
 {
-    return new Fireball();
+    return (new Fireball());
 }

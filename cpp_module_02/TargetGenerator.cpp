@@ -13,7 +13,10 @@ TargetGenerator& TargetGenerator::operator=(const TargetGenerator& other)
 {
     if (this != &other)
     {
-        // 
+        for (int i = 0; i < 4; i++)
+        {
+            this->target[i] = other.target[i];
+        }
     }
     return *this;
 }

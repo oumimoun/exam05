@@ -13,7 +13,7 @@ public:
     Polymorph& operator=(const Polymorph& other);
     ~Polymorph();
 
-    Polymorph* clone() const;
+    ASpell* clone() const;
 };
 
 #endif
