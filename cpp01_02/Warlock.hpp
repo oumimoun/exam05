@@ -3,11 +3,12 @@
 
 #include <iostream>
 #include "ASpell.hpp"
+#include <map>
 
 class Warlock
 {
 private:
-    ASpell* _templates[4];
+    std::map<std::string , ASpell*> _templates;
     std::string name;
     std::string title;
     Warlock();

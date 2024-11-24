@@ -2,19 +2,11 @@
 
 Warlock::Warlock() : name(""), title("")
 {
-    for (int i = 0; i < 4; i++)
-    {
-        _templates[i] = NULL;
-    }
 }
 
 Warlock::Warlock(std::string name, std::string title) : name(name), title(title)
 {
     std::cout << name << ": This looks like another boring day." << std::endl;
-    for (int i = 0; i < 4; i++)
-    {
-        _templates[i] = NULL;
-    }
 }
 
 Warlock::~Warlock()
@@ -33,15 +25,7 @@ Warlock &Warlock::operator=(const Warlock &other)
     {
         name = other.name;
         title = other.title;
-        for (int i = 0; i < 4; i++)
-        {
-            // delete
-            if (other._templates[i])
-            {
-                _templates[i] = other._templates[i];
-            }
-            _templates[i] = NULL;
-        }
+        _templates = other._templates;
     }
     return *this;
 }
@@ -66,43 +50,29 @@ void Warlock::introduce() const
     std::cout << name << ": I am " << name << ", " << title << "!" << std::endl;
 }
 
-void Warlock::learnSpell(ASpell *aspell)
+void Warlock::learnSpell(ASpell *spell)
 {
-    if (!aspell)
-        return;
-    for (int i = 0; i < 4; i++)
+    if (spell)
     {
-        if (_templates[i] == NULL)
-        {
-            _templates[i] = aspell;
-            return;
-        }
+        if (_templates.find(spell->getName()) == _templates.end()) // tatmchi l tali d templates o tatzid spell m clonya
+            _templates[spell->getName()] = spell->clone();
     }
 }
 
 void Warlock::forgetSpell(std::string spellName)
 {
-    for (int i = 0; i < 4; i++)
+    if (_templates.find(spellName) != _templates.end())
     {
-        if (_templates[i]->getName() == spellName && _templates[i] != NULL)
-        {
-            _templates[i] = NULL;
-            return;
-        }
+        delete _templates[spellName];
+        _templates.erase(_templates.find(spellName));
     }
+    
 }
 
 void Warlock::launchSpell(std::string spellName, ATarget &target)
 {
-    for (int i = 0; i < 4; i++)
+    if (_templates.find(spellName) != _templates.end())
     {
-        if (_templates[i])
-        {
-            if (_templates[i]->getName() == spellName)
-            {
-                _templates[i]->launch(target);
-                return;
-            }
-        }
+        _templates[spellName]->launch(target);
     }
 }
