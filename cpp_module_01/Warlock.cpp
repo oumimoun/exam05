@@ -12,6 +12,14 @@ Warlock::Warlock(std::string name, std::string title) : name(name), title(title)
 Warlock::~Warlock()
 {
     std::cout << name << ": My job here is done!" << std::endl;
+    // free here
+    std::map<std::string, ASpell *>::iterator it = _templates.begin();
+    while (it != _templates.end())
+    {
+        delete it->second;
+        it++;
+    }
+    _templates.clear();
 }
 
 Warlock::Warlock(const Warlock &other)
@@ -50,12 +58,11 @@ void Warlock::introduce() const
     std::cout << name << ": I am " << name << ", " << title << "!" << std::endl;
 }
 
-void Warlock::learnSpell(ASpell *spell)
+void Warlock::learnSpell(ASpell* spell)
 {
-    if (spell)
+    if (_templates.find(spell->getName()) == _templates.end())
     {
-        if (_templates.find(spell->getName()) == _templates.end()) // tatmchi l tali d templates o tatzid spell m clonya
-            _templates[spell->getName()] = spell->clone();
+        _templates[spell->getName()] = spell->clone();
     }
 }
 
@@ -66,13 +73,13 @@ void Warlock::forgetSpell(std::string spellName)
         delete _templates[spellName];
         _templates.erase(_templates.find(spellName));
     }
-    
 }
 
-void Warlock::launchSpell(std::string spellName, ATarget &target)
+void Warlock::launchSpell(std::string spellName, ATarget const & target)
 {
     if (_templates.find(spellName) != _templates.end())
     {
         _templates[spellName]->launch(target);
     }
+    
 }

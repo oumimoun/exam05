@@ -1,11 +1,15 @@
-#include "Fwoosh.hpp"
 #include "Warlock.hpp"
-#include "Dummy.hpp"
 #include "BrickWall.hpp"
 #include "Polymorph.hpp"
 #include "TargetGenerator.hpp"
 #include "Fireball.hpp"
 #include "ATarget.hpp"
+#include "ASpell.hpp"
+
+void f()
+{
+  system("leaks a.out");
+}
 
 int main()
 {

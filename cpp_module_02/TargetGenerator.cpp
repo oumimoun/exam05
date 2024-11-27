@@ -1,45 +1,51 @@
 #include "TargetGenerator.hpp"
 
-TargetGenerator::TargetGenerator() {}
-
-TargetGenerator::~TargetGenerator() {}
+TargetGenerator::TargetGenerator()
+{
+}
 
 TargetGenerator::TargetGenerator(const TargetGenerator& other)
 {
     *this = other;
 }
 
+TargetGenerator::~TargetGenerator()
+{
+}
+
 TargetGenerator& TargetGenerator::operator=(const TargetGenerator& other)
 {
-    if (this != &other)
+    if (this!= &other)
     {
-        _target = other._target;
+        map = other.map;
     }
     return *this;
 }
 
-
-void TargetGenerator::learnTargetType(ATarget* target)
+void TargetGenerator::learnTargetType(ATarget * target)
 {
-    if (target)
+    if (map.find(target->getType()) == map.end())
     {
-        _target[target->getType()] = target;
+        map[target->getType()] = target;
     }
+    
 }
 
-
-void TargetGenerator::forgetTargetType(std::string const &targetType)
+void TargetGenerator::forgetTargetType(std::string const & targetName)
 {
-    if (_target.find(targetType) != _target.end())
-        _target.erase(_target.find(targetType));
+    if (map.find(targetName) != map.end())
+    {
+        map.erase(targetName);
+    }
+    
 }
 
-
-ATarget* TargetGenerator::createTarget(std::string const &targetType)
+ATarget* TargetGenerator::createTarget(std::string const & targetName)
 {
-    ATarget* temp = NULL;
-    if (_target.find(targetType) != _target.end())
-        temp = _target[targetType];
+    ATarget *temp = NULL;
+    if (map.find(targetName) != map.end())
+    {
+        temp =  map[targetName];
+    }
     return temp;
 }
-

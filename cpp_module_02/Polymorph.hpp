@@ -9,11 +9,11 @@ private:
 
 public:
     Polymorph();
-    Polymorph(const Polymorph& other);
-    Polymorph& operator=(const Polymorph& other);
     ~Polymorph();
-
     ASpell* clone() const;
+
 };
+
+
 
 #endif

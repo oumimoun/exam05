@@ -2,8 +2,14 @@
 #include "Warlock.hpp"
 #include "Dummy.hpp"
 
+void f()
+{
+  system("leaks a.out");
+}
+
 int main()
 {
+	atexit(f);
 	Warlock richard("Richard", "the Titled");
 
 	Dummy bob;

@@ -7,11 +7,9 @@ class Dummy : public ATarget
 {
 public:
     Dummy();
-    Dummy(const Dummy& other);
-    Dummy& operator=(const Dummy& other);
     ~Dummy();
 
-    ATarget* clone() const; // hna
+    ATarget* clone() const;
 };
 
 

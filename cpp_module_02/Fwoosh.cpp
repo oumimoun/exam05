@@ -9,23 +9,9 @@ Fwoosh::~Fwoosh()
 {
 }
 
-Fwoosh::Fwoosh(const Fwoosh& other) : ASpell("Fwoosh", "fwooshed")
-{
-    *this = other;
-}
 
-Fwoosh& Fwoosh::operator=(const Fwoosh& other)
+ASpell* Fwoosh::clone() const
 {
-    if (this != &other)
-    {
-        this->name = other.name;
-        this->effects = other.effects;
-    }
-    return *this;
-}
-
-ASpell* Fwoosh::clone() const //ta hna
-{
-    return new Fwoosh(*this);
+    return (new Fwoosh());
 }
 

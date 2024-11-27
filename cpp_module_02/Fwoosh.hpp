@@ -9,10 +9,7 @@ private:
     
 public:
     Fwoosh();
-    Fwoosh(const Fwoosh& other);
-    Fwoosh & operator=(const Fwoosh& other);
     ~Fwoosh();
-
     ASpell* clone() const;
 
 };

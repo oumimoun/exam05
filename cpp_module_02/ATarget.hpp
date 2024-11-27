@@ -12,10 +12,11 @@ protected:
     std::string type;
 
 public:
+    ATarget();
     ATarget(std::string type);
     ATarget(const ATarget& other);
     ATarget& operator=(const ATarget& other);
-    virtual ~ATarget(); //hna nsit virtual
+    virtual ~ATarget();
 
     std::string const& getType() const;
 

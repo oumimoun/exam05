@@ -3,19 +3,16 @@
 
 #include "ASpell.hpp"
 
-class Fireball : public ASpell
+class Fireball : public  ASpell
 {
+private:
+    
 public:
     Fireball();
-    Fireball(const Fireball& other);
-
-    Fireball& operator=(const Fireball& other);
     ~Fireball();
 
-    ASpell* clone() const ; //hna
-
+    ASpell* clone() const;
 };
-
 
 
 #endif

@@ -6,12 +6,10 @@
 class BrickWall : public ATarget
 {
 private:
-public:
-    BrickWall();
-    BrickWall(const BrickWall& other);
-    BrickWall& operator=(const BrickWall& other);
-    ~BrickWall();
 
+public:
+    BrickWall(/* args */);
+    ~BrickWall();
     ATarget* clone() const;
 };
 
