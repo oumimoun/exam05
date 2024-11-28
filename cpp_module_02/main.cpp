@@ -13,6 +13,7 @@ void f()
 
 int main()
 {
+  atexit(f);
   Warlock richard("Richard", "foo");
   richard.setTitle("Hello, I'm Richard the Warlock!");
   BrickWall model1;
